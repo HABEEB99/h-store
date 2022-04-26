@@ -7,7 +7,7 @@ const PageLayout = ({ title, description, children }) => {
   return (
     <>
       <Head>
-        <title>{title ? `${title}-H-STORE` : 'H-STORE'}</title>
+        <title>{title ? `H-STORE - ${title}` : 'H-STORE'}</title>
         {description && <meta name="description" content={description} />}
       </Head>
       <Header />

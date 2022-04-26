@@ -1,0 +1,15 @@
+import nc from 'next-connect';
+import client from '../../../lib/sanity';
+
+
+const handler = nc();
+
+handler.get(async (req, res) => {
+  const product = await client.fetch(
+    `*[_type == "product" && _id == $id] [0]`,
+    { id: req.query._id }
+  );
+  res.send(product);
+});
+
+export default handler;

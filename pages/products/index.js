@@ -45,7 +45,7 @@ const Products = ({ products }) => {
 
 export default Products;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const productsData = await client.fetch(`*[_type=='product']`);
 
   return {
