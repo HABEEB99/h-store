@@ -12,15 +12,16 @@ import { BiLogInCircle } from 'react-icons/bi';
 
 const Login = () => {
   const router = useRouter();
+  const { redirect } = router.query;
 
   const { state, dispatch } = useContext(StoreContext);
   const { userInfo } = state;
 
   useEffect(() => {
     if (userInfo) {
-      router.push('/');
+      router.push(redirect || '/');
     }
-  }, [router, userInfo]);
+  }, [router, userInfo, redirect]);
 
   const {
     handleSubmit,
@@ -37,7 +38,7 @@ const Login = () => {
       });
       dispatch({ type: 'LOGIN_USER', payload: data });
       Cookies.set('userInfo', JSON.stringify(data));
-      router.push('/');
+      router.push(redirect || '/');
       toast.success('You signed up successfully', {
         position: 'top-center',
       });
@@ -59,7 +60,7 @@ const Login = () => {
         >
           <div className="flex flex-col w-[20rem] md:w-[35rem] lg:w-[50rem] mb-8 mt-4 relative">
             <input
-              className="peer placeholder-transparent w-full h-12 rounded-md text-2xl  
+              className="peer placeholder-transparent w-full h-12 rounded-md text-lg  
             border-2 border-body focus:border-btn px-2 bg-white text-logo outline-none"
               type="text"
               id="email"
@@ -87,7 +88,7 @@ const Login = () => {
 
           <div className=" flex flex-col w-[20rem] md:w-[35rem] lg:w-[50rem] mb-4 relative">
             <input
-              className="peer placeholder-transparent px-2 w-full h-12 rounded-md text-2xl  
+              className="peer placeholder-transparent px-2 w-full h-12 rounded-md text-lg  
             border-2 border-body focus:border-btn bg-white text-logo outline-none "
               type="password"
               placeholder="Password"
@@ -122,7 +123,7 @@ const Login = () => {
 
         <h4>
           Don&apos;t have an account yet?
-          <Link href="/signup">
+          <Link href={`/signup?redirect=${redirect || '/'}`}>
             <a className="ml-2 text-btn animate-pulse"> Signup </a>
           </Link>
         </h4>

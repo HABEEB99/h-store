@@ -16,6 +16,7 @@ const User = () => {
     dispatch({ type: 'LOGOUT_USER' });
     Cookies.remove('userInfo');
     Cookies.remove('cartItems');
+    Cookies.remove('shippingAddress');
     router.push('/');
   };
   return (

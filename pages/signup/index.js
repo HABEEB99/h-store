@@ -12,15 +12,16 @@ import { BiLogInCircle, BiLogOutCircle } from 'react-icons/bi';
 
 const SignUp = () => {
   const router = useRouter();
+  const { redirect } = router.query;
 
   const { state, dispatch } = useContext(StoreContext);
   const { userInfo } = state;
 
   useEffect(() => {
     if (userInfo) {
-      router.push('/');
+      router.push(redirect || '/');
     }
-  }, [router, userInfo]);
+  }, [router, userInfo, redirect]);
 
   const {
     register,
@@ -43,7 +44,7 @@ const SignUp = () => {
       });
       dispatch({ type: 'LOGIN_USER', payload: data });
       Cookies.set('userInfo', JSON.stringify(data));
-      router.push('/');
+      router.push(redirect || '/');
       toast.success('You signed up successfully', {
         position: 'top-center',
       });
@@ -55,12 +56,15 @@ const SignUp = () => {
   };
   return (
     <PageLayout>
-      <div className="w-screen h-[87vh] px-6 md:px-16 lg:px-32 flex flex-col items-center justify-center">
-        <h1 className="text-6xl font-bold text-logo mt-8">Sign Up</h1>
-        <form onSubmit={handleSubmit(submitForm)} className="py-8 w-[20rem] md:w-[35rem] lg:w-[50rem]">
+      <div className="w-screen min-h-[87vh] px-6 md:px-16 lg:px-32 flex flex-col items-center justify-center">
+        <h1 className=" text-xl md:text-2xl lg:text-3xl font-bold text-logo mt-8">Sign Up</h1>
+        <form
+          onSubmit={handleSubmit(submitForm)}
+          className="py-8 w-[20rem] md:w-[35rem] lg:w-[50rem]"
+        >
           <div className="flex flex-col w-[20rem] md:w-[35rem] lg:w-[50rem] mb-8 mt-4 relative">
             <input
-              className="peer placeholder-transparent w-full h-12 rounded-md text-2xl  
+              className="peer placeholder-transparent w-full h-12 rounded-md text-lg  
             border-2 border-body focus:border-btn px-2 bg-white text-logo outline-none"
               type="text"
               id="name"
@@ -89,7 +93,7 @@ const SignUp = () => {
 
           <div className="flex flex-col w-[20rem] md:w-[35rem] lg:w-[50rem] mb-8 relative">
             <input
-              className="peer placeholder-transparent w-full h-12 rounded-md text-2xl  
+              className="peer placeholder-transparent w-full h-12 rounded-md text-lg  
             border-2 border-body focus:border-btn px-2 bg-white text-logo outline-none"
               type="text"
               id="email"
@@ -119,7 +123,7 @@ const SignUp = () => {
 
           <div className=" flex flex-col w-[20rem] md:w-[35rem] lg:w-[50rem] mb-8 relative">
             <input
-              className="peer placeholder-transparent w-full h-12 rounded-md text-2xl  
+              className="peer placeholder-transparent w-full h-12 rounded-md text-lg  
             border-2 border-body focus:border-btn px-2 bg-white text-logo outline-none"
               type="password"
               id="password"
@@ -150,7 +154,7 @@ const SignUp = () => {
 
           <div className=" flex flex-col w-[20rem] md:w-[35rem] lg:w-[50rem] mb-4 relative">
             <input
-              className="peer placeholder-transparent w-full h-12 rounded-md text-2xl  
+              className="peer placeholder-transparent w-full h-12 rounded-md text-lg  
             border-2 border-body focus:border-btn px-2 bg-white text-logo outline-none"
               type="password"
               id="confirmPassword"
@@ -184,6 +188,13 @@ const SignUp = () => {
             <BiLogInCircle />
           </button>
         </form>
+
+        <h4>
+          Already Signed up?
+          <Link href={`/login?redirect=${redirect || '/'}`}>
+            <a className="ml-2 text-btn animate-pulse"> Sign in </a>
+          </Link>
+        </h4>
       </div>
     </PageLayout>
   );
