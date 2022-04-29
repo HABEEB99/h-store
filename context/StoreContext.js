@@ -5,6 +5,10 @@ import { toast } from 'react-toastify';
 export const StoreContext = createContext();
 
 const initialState = {
+  userInfo: Cookies.get('userInfo')
+    ? JSON.parse(Cookies.get('userInfo'))
+    : null,
+
   cart: {
     cartItems: Cookies.get('cartItems')
       ? JSON.parse(Cookies.get('cartItems'))
@@ -14,6 +18,12 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'LOGIN_USER':
+      return { ...state, userInfo: action.payload };
+
+      case 'LOGOUT_USER':
+      return { ...state, userInfo: null };
+
     case 'ADD_ITEM_TO_CART': {
       const newItem = action.payload;
       const existingItem = state.cart.cartItems.find(

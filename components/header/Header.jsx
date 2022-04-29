@@ -21,6 +21,7 @@ const Header = () => {
   const {
     state: {
       cart: { cartItems },
+      userInfo,
     },
     dispatch,
   } = useContext(StoreContext);
@@ -31,6 +32,15 @@ const Header = () => {
         <HiShoppingCart className="text-xl lg:text-3xl" />
         <h1 className="text-xl lg:text-3xl">H-STORE</h1>
       </div>
+
+      {userInfo && (
+        <div className="flex items-center justify-center">
+          <div className="rounded-[50%] w-2 h-2 md:w-3 md:h-3 bg-green-500 animate-pulse"></div>
+          <span className="text-lg md:text-2xl font-bold text-gray-800 ml-1">
+            {userInfo.name}
+          </span>
+        </div>
+      )}
 
       <div className="flex items-center space-x-4">
         <ImSearch
