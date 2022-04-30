@@ -17,6 +17,10 @@ const initialState = {
     shippingAddress: Cookies.get('shippingAddress')
       ? JSON.parse(Cookies.get('shippingAddress'))
       : {},
+
+    paymentMethod: Cookies.get('paymentMethod')
+      ? Cookies.get('paymentMethod')
+      : '',
   },
 };
 
@@ -36,6 +40,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         cart: { ...state.cart, shippingAddress: action.payload },
+      };
+
+    case 'ADD_PAYMENT_METHOD':
+      return {
+        ...state,
+        cart: { ...state.cart, paymentMethod: action.payload },
       };
 
     case 'ADD_ITEM_TO_CART': {

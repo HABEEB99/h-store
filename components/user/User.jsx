@@ -17,6 +17,7 @@ const User = () => {
     Cookies.remove('userInfo');
     Cookies.remove('cartItems');
     Cookies.remove('shippingAddress');
+    Cookies.remove('paymentMethod');
     router.push('/');
   };
   return (
