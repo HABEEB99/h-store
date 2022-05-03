@@ -22,20 +22,18 @@ const ProductDetails = ({ product }) => {
   //   dispatch({type: 'ADD_TO_CART', payload: data});
   // };
 
-  const addProductToCart = () => {
+  const addProductToCart = (product) => {
     const existingItem = cart.cartItems.find(
       (item) => item._id === product._id
     );
     const quantity = existingItem ? existingItem.quantity + 1 : 1;
-    // toast.info(`${product.name} added to cart`, {
-    //   position: 'bottom-right',
-    // });
 
     // const { data } = axios.get(`/api/products/${product._id}`);
     // if (data.numInStock < quantity) {
     //   toast.error('Selected product is out stock', {
     //     position: 'bottom-right',
     //   });
+    //   return;
     // }
 
     dispatch({
@@ -137,9 +135,9 @@ const ProductDetails = ({ product }) => {
               </h2>
 
               <button
-                onClick={addProductToCart}
+                onClick={() => addProductToCart(product)}
                 className="flex items-center justify-center w-[100%] h-12 font-bold hover:bg-white hover:text-logo
-          shadow-lg bg-btn mt-4 rounded-lg text-xl text-white hover:border-2 hover:border-btn"
+                 shadow-lg bg-btn mt-4 rounded-lg text-xl text-white hover:border-2 hover:border-btn"
               >
                 ADD TO CART
                 <BsCartPlusFill className="ml-2" />

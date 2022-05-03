@@ -11,6 +11,7 @@ import Link from 'next/link';
 import PageLayout from '../../components/page-layout/PageLayout';
 import { StoreContext } from '../../context/StoreContext';
 import { toast } from 'react-toastify';
+import dynamic from 'next/dynamic';
 
 const Checkout = () => {
   const router = useRouter();
@@ -69,7 +70,7 @@ const Checkout = () => {
   ) : (
     <PageLayout title="Shopping Cart ">
       <div className="w-screen min-h-[90vh]   pb-10  px-4 md:px-12 lg:px-32">
-        <h1 className="text-5xl pt-6 font-bold text-cta">Shopping Cart</h1>
+        <h1 className="text-5xl pt-6 font-bold text-logo">Shopping Cart</h1>
 
         <div className="w-full overflow-auto flex flex-col lg:flex-row mt-10">
           <table className="w-full ">
@@ -81,7 +82,7 @@ const Checkout = () => {
               </tr>
             </thead>
             {cartItems?.map((item) => (
-              <tbody key={item._id} className="border-b-2  border-b-logo">
+              <tbody key={item._key} className="border-b-2  border-b-logo">
                 <tr className="">
                   <td>
                     {/* PRODUCT */}
@@ -193,5 +194,4 @@ const Checkout = () => {
     </PageLayout>
   );
 };
-
 export default Checkout;

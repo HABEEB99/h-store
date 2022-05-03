@@ -4,7 +4,7 @@ import { IoMdCheckmarkCircle } from 'react-icons/io';
 
 const ShippingPage = () => {
   return (
-    <div className="flex md:items-center justify-between mt-1 p-4  md:p-8 h-20 w-screen lg:w-[82vw] shadow-2xl rounded-md">
+    <div className="flex md:items-center justify-between mt-1 p-4  md:p-8 h-24 w-screen lg:w-[82vw] shadow-2xl rounded-md">
       <div className="flex flex-col items-center">
         <IoMdCheckmarkCircle className="text-lg md:text-2xl lg:text-3xl text-btn" />
         <h2 className="text-sm md:text-lg lg:text-2xl font-bold text-logo text-center">

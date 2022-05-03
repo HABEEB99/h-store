@@ -1,0 +1,33 @@
+export default {
+  name: 'order',
+  title: 'Order',
+  type: 'document',
+  fields: [
+    {
+      name: 'user',
+      title: 'User',
+      type: 'reference',
+      to: [{ type: 'user' }],
+      options: { disableNew: true },
+    },
+    { name: 'userName', title: 'User Name', type: 'string' },
+    { name: 'itemPrice', title: 'Item Price', type: 'number' },
+    { name: 'shippingCost', title: 'Shipping Cost', type: 'number' },
+    { name: 'taxCost', title: 'Tax Cost', type: 'number' },
+    { name: 'totalCost', title: 'Total Cost', type: 'number' },
+    { name: 'shippingAddress', title: 'Shipping Address', type: 'string' },
+    { name: 'paymentMethod', title: 'Payment Method', type: 'string' },
+    { name: 'paymentResult', title: 'Payment Result', type: 'paymentResult' },
+    {
+      name: 'orderedItems',
+      title: 'Ordered Items',
+      type: 'array',
+      of: [{ title: 'Ordered Item', type: 'orderedItem' }],
+    },
+    { name: 'paymentStatus', title: 'Payment Status', type: 'boolean' },
+    { name: 'paymentDate', title: 'Payment Date', type: 'datetime' },
+    { name: 'shippingStatus', title: 'Shipping Status', type: 'boolean' },
+    { name: 'deliveryDate', title: 'Delivery Date', type: 'datetime' },
+    { name: 'createdAt', title: 'Created At', type: 'datetime' },
+  ],
+};
